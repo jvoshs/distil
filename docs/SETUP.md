@@ -100,7 +100,9 @@ Use the same list as `STRIP_PARAMS` in the Worker's wrangler.toml, so both sides
 4. To show the Allowance card, add an **Embed** block with
    `https://YOUR_INBOX/widget?k=YOUR_WIDGET_KEY`.
 
-## 7. The iPhone shortcut
+## 7. Your phone's share menu
+
+### iPhone
 
 1. In Shortcuts, make a new shortcut called **Save to Notes**. In its details, turn on
    **Show in Share Sheet** and set it to receive **URLs** and **Text**.
@@ -112,6 +114,23 @@ Use the same list as `STRIP_PARAMS` in the Worker's wrangler.toml, so both sides
 3. Add **Get Dictionary Value** for key `message`, then **Show Notification** with it.
 
 Share any link to **Save to Notes**. You'll see "Saved to your inbox".
+
+### Android
+
+Install **HTTP Shortcuts** from the Play Store. Make a new shortcut:
+
+- Method **POST**, URL `https://YOUR_INBOX/api/add`
+- Header `Authorization` = `Bearer YOUR_INBOX_TOKEN`
+- Body type **JSON**: `{"url": "{shared text}"}`, using the app's variable for shared text
+- Turn on **Show in share menu**
+
+Share any link to it. Other apps that can send a web request from the share menu work too.
+
+### Any device
+
+Open your inbox URL in a browser, enter your inbox token once, and paste links into the box.
+
+Commands in this guide work the same on Mac, Windows (PowerShell) and Linux.
 
 ## Handy commands
 

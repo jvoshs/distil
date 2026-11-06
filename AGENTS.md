@@ -45,7 +45,8 @@ You're helping someone set up or change Share to Notes. Read README.md and docs/
    docs/SETUP.md if the user wants them. Commit and push it to the **notes** repo.
 7. **Notion (optional):** help the user make the database with the properties in docs/SETUP.md, share it with
    the integration, and put `NOTION_DATA_SOURCE_ID` in settings.env.
-8. **iPhone Shortcut:** walk the user through section 7 of docs/SETUP.md. You can't do this part for them.
+8. **Phone share menu:** ask whether they use iPhone or Android, then walk them through section 7 of
+   docs/SETUP.md. You can't do this part for them.
 9. **Enable Actions** on the fork if needed: `gh workflow enable process.yml -R OWNER/FORK`.
 10. **Test:** add a direct link to a short public video file through the inbox page, or run
     `gh workflow run process.yml -R OWNER/FORK` and `gh run watch -R OWNER/FORK`. Check the log shows

@@ -44,7 +44,8 @@ you use. Pull requests that add fetchers for specific websites won't be merged.
 
 ## Set it up yourself
 
-About 15 minutes or less. The full guide with every detail is in [docs/SETUP.md](docs/SETUP.md). In short:
+About 15 minutes or less. Works on Mac, Windows and Linux, with iPhone or Android. The full guide with every
+detail is in [docs/SETUP.md](docs/SETUP.md). In short:
 
 1. **[Fork this repo](https://github.com/jvoshs/share-to-notes/fork)** and make a separate **private** repo for your notes.
 2. **Get free keys:** Gemini (aistudio.google.com), Groq (console.groq.com) and a Cloudflare Workers AI token.
@@ -62,7 +63,8 @@ About 15 minutes or less. The full guide with every detail is in [docs/SETUP.md]
 4. **Add GitHub secrets** to your fork: `NOTES_REPO`, `NOTES_REPO_TOKEN`, `INBOX_TOKEN`, `GEMINI_API_KEY`,
    `GROQ_API_KEY`, `CF_ACCOUNT_ID`, `CF_API_TOKEN`, and optionally `NOTION_TOKEN` and `FETCHER_ENV`.
 5. **Add `settings.env`** to your notes repo with at least `INBOX_URL=...`.
-6. **Make an iPhone Shortcut** that posts the shared link to `https://YOUR_INBOX/api/add`.
+6. **Add it to your phone's share menu:** an iPhone Shortcut, or an app like HTTP Shortcuts on Android, that posts
+   the shared link to `https://YOUR_INBOX/api/add`. You can also paste links into the inbox web page.
 7. **Test it:** `gh workflow run process.yml`, then `gh run watch`.
 
 ## Set it up with an AI coding agent
@@ -85,7 +87,7 @@ Claude Code, Codex and similar tools can do most of the setup for you. The repo 
    > or needs a key. Never ask me to paste a key into this chat. Use commands that prompt me for it instead.
 
 The agent can create the repos, the database and the Worker, and walk you through the parts only you
-can do: getting keys, approving logins and making the iPhone Shortcut.
+can do: getting keys, approving logins and setting up your phone.
 
 **Keep your keys out of the chat.** A good agent will run `gh secret set NAME` or `npx wrangler secret put NAME`,
 and you type the key into the prompt it opens. If an agent asks you to paste a key into the conversation, say no.
