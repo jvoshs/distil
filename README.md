@@ -2,9 +2,13 @@
 
 Share a link from your phone. A few minutes later it's a tidy, searchable note.
 
-Share to Notes turns posts and videos you save into Markdown notes that you, Notion and AI assistants
+Share to Notes turns posts and videos you share to it into Markdown notes that you, Notion and AI assistants
 like Claude can read. Each note has a summary, the key points, every item in a list, things to try,
 and the full extracted text: caption, spoken transcript, on-screen text and slide text.
+
+Think of it as your own customisable version of save-it-later apps like [mymind](https://mymind.com) or
+[Raindrop.io](https://raindrop.io), except it actually watches the videos you share to it, and every note is a plain
+file you own. (Not affiliated with either.)
 
 It runs on free tiers only: Cloudflare Workers, GitHub Actions, Groq, Google Gemini and, if you want it,
 Notion. Nothing runs on your computer. As of November 2026, none of these services need a card for their
