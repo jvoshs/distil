@@ -7,7 +7,8 @@ like Claude can read. Each note has a summary, the key points, every item in a l
 and the full extracted text: caption, spoken transcript, on-screen text and slide text.
 
 It runs on free tiers only: Cloudflare Workers, GitHub Actions, Groq, Google Gemini and, if you want it,
-Notion. Nothing runs on your computer, and no account needs a card.
+Notion. Nothing runs on your computer. As of November 2026, none of these services need a card for their
+free tier. Plans change, so check each provider's pricing page before you sign up.
 
 ```mermaid
 flowchart LR
