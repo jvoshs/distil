@@ -42,7 +42,7 @@ you use. Pull requests that add fetchers for specific websites won't be merged.
 
 About 15 minutes or less. The full guide with every detail is in [docs/SETUP.md](docs/SETUP.md). In short:
 
-1. **Fork this repo** and make a separate **private** repo for your notes.
+1. **[Fork this repo](https://github.com/jvoshs/share-to-notes/fork)** and make a separate **private** repo for your notes.
 2. **Get free keys:** Gemini (aistudio.google.com), Groq (console.groq.com) and a Cloudflare Workers AI token.
    A Notion integration token is optional.
 3. **Deploy the inbox:**
@@ -66,9 +66,16 @@ About 15 minutes or less. The full guide with every detail is in [docs/SETUP.md]
 Claude Code, Codex and similar tools can do most of the setup for you. The repo includes
 [AGENTS.md](AGENTS.md), which tells the agent exactly what to do and what not to touch.
 
-1. Install the GitHub CLI (`gh`) and Node.js, and sign in with `gh auth login`.
-2. Clone your fork and open a terminal in it.
-3. Start your agent there (for example `claude` or `codex`) and paste:
+1. Install the tools:
+   - [GitHub CLI](https://cli.github.com) (`gh`), then sign in with `gh auth login`
+   - [Node.js](https://nodejs.org) (the LTS version)
+   - An agent: [Claude Code](https://claude.com/claude-code) or [Codex](https://github.com/openai/codex)
+2. [Fork this repo](https://github.com/jvoshs/share-to-notes/fork), then clone your fork:
+   ```bash
+   gh repo clone YOUR_USERNAME/share-to-notes
+   cd share-to-notes
+   ```
+3. Start your agent in that folder (`claude` or `codex`) and paste:
 
    > Set up Share to Notes for me by following AGENTS.md. Ask me before each step that creates something
    > or needs a key. Never ask me to paste a key into this chat. Use commands that prompt me for it instead.
