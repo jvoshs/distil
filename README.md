@@ -29,6 +29,8 @@ flowchart LR
   F --> H[("Notion<br/>optional")]
 ```
 
+⭐ **If Distil is useful to you, give it a star.** It helps other people find it.
+
 ## What you get
 
 - **One page per post**, sorted into category folders, with a cover image.
@@ -144,6 +146,42 @@ The agent will put the plugin in your private notes repo, not in this one.
 | Cloudflare Workers and D1 | 100,000 requests a day | The inbox |
 | GitHub Actions | Unlimited on public repos | Running the engine |
 
+## Good for
+
+- **Study and research:** turn explainer videos and slide posts into notes you can revise from.
+- **Recipes, workouts and how-tos:** keep every step, ingredient and set, not just a link.
+- **Book, tool and app recommendations:** every item in a list ends up in the note, with its details.
+- **A second brain for your AI assistant:** ask Claude or ChatGPT "what have I saved about budgeting?"
+  and get answers from your own notes.
+- **Replacing a read-it-later app** with something free that you own and can change.
+
+## FAQ
+
+**Can I turn saved videos into searchable notes automatically?**
+Yes. Share the link and Distil transcribes the speech, reads the on-screen text and slides, and writes a
+summarised Markdown note a few minutes later.
+
+**Does it work with Notion or Obsidian?**
+Yes. Notes sync to a Notion database, and the Markdown files work as an Obsidian vault.
+
+**Is it free?**
+Yes. It runs on free tiers of Cloudflare, GitHub Actions, Groq and Gemini. Nothing runs on your computer.
+
+**Can AI assistants read my notes?**
+Yes. Each note is plain Markdown with a summary, key points and the full extracted text. `Index.md` lists
+every note in one place, so assistants like Claude can find things quickly.
+
+**Is this a self-hosted alternative to save-it-later apps?**
+That's the idea. Think of it as an open-source, AI-powered read-it-later inbox that also understands videos.
+
+**Which websites does it support?**
+Direct links to video and image files out of the box. For anything else, you add a small fetcher plugin
+for the content you save. See [Fetcher plugins](#fetcher-plugins).
+
 ## Licence
 
 MIT. See [LICENSE](LICENSE). The software comes with no warranty, and you're responsible for how you use it.
+
+---
+
+Made in Aotearoa New Zealand. If Distil saves you time, a ⭐ helps a lot.
