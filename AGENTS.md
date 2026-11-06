@@ -24,7 +24,8 @@ You're helping someone set up or change Share to Notes. Read README.md and docs/
    - Gemini: https://aistudio.google.com (Get API key)
    - Groq: https://console.groq.com (API Keys)
    - Cloudflare account ID and a Workers AI API token: https://dash.cloudflare.com
-   - Optional Notion integration: https://www.notion.so/profile/integrations
+   - Optional Notion connection: https://app.notion.com/developers/connections (make a new connection and
+     copy its API token)
    - A fine-grained GitHub token at https://github.com/settings/personal-access-tokens/new with access to
      the fork and the notes repo, and **Contents: Read and write** only.
 4. **Inbox Worker**, from `worker/`:
@@ -44,7 +45,7 @@ You're helping someone set up or change Share to Notes. Read README.md and docs/
 6. **settings.env** in the notes repo with `INBOX_URL=` set to the Worker URL. Add other settings from
    docs/SETUP.md if the user wants them. Commit and push it to the **notes** repo.
 7. **Notion (optional):** help the user make the database with the properties in docs/SETUP.md, share it with
-   the integration, and put `NOTION_DATA_SOURCE_ID` in settings.env.
+   the connection, and put `NOTION_DATA_SOURCE_ID` in settings.env.
 8. **Phone share menu:** ask whether they use iPhone or Android, then walk them through section 7 of
    docs/SETUP.md. You can't do this part for them.
 9. **Enable Actions** on the fork if needed: `gh workflow enable process.yml -R OWNER/FORK`.

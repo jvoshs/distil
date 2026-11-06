@@ -1750,7 +1750,7 @@ def update_allowance(s: Settings) -> None:
     try:
         kids = nt.call("GET", f"/blocks/{hub}/children?page_size=50").get("results", [])
     except Exception as e:
-        log.warning("Couldn't open the Notion hub page (share it with your integration): %s", str(e)[:150])
+        log.warning("Couldn't open the Notion hub page (add your Notion connection to it): %s", str(e)[:150])
         return
     for b in kids:
         if b.get("type") == "callout" and (b["callout"].get("icon") or {}).get("emoji") == "📟":
@@ -1772,7 +1772,7 @@ def sync_notion(s: Settings, changed: set[str], backfill: int = 25) -> int:
     try:
         have = nt.existing()
     except Exception as e:
-        log.warning("Couldn't reach Notion (%s). Is the database shared with your integration?", str(e)[:200])
+        log.warning("Couldn't reach Notion (%s). Is your Notion connection added to the database?", str(e)[:200])
         return 0
     notes = {str(p.relative_to(REPO_DIR)): p for p in note_files()}
     for rel in sorted(changed):

@@ -34,7 +34,7 @@ You'll make:
 | `GEMINI_API_KEY` | aistudio.google.com, Get API key | Flash-Lite: about 500 requests a day, resets midnight US Pacific |
 | `GROQ_API_KEY` | console.groq.com, API Keys | Whisper: about 8 hours of audio a day |
 | `CF_ACCOUNT_ID`, `CF_API_TOKEN` | Cloudflare dashboard. Token template "Workers AI" | 10,000 neurons a day |
-| `NOTION_TOKEN` (optional) | notion.so/profile/integrations, new internal integration | Generous |
+| `NOTION_TOKEN` (optional) | app.notion.com/developers/connections, make a new connection and copy its API token | Generous |
 
 ## 3. The inbox Worker
 
@@ -95,7 +95,7 @@ Use the same list as `STRIP_PARAMS` in the Worker's wrangler.toml, so both sides
 1. Make a database with these properties: **Name** (title), **Category** (select), **Summary** (text),
    **Tags** (multi-select), **Creator** (text), **Type** (select), **Source** (URL), **Posted** (date),
    **Saved** (date), **Shortcode** (text), **Status** (select: Ready, Failed), **Read** (checkbox).
-2. Share the database with your integration (••• menu, Connections).
+2. Add your connection to the database (••• menu, Connections).
 3. Copy the data source ID into `NOTION_DATA_SOURCE_ID` in settings.env.
 4. To show the Allowance card, add an **Embed** block with
    `https://YOUR_INBOX/widget?k=YOUR_WIDGET_KEY`.

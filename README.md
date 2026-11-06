@@ -49,7 +49,7 @@ detail is in [docs/SETUP.md](docs/SETUP.md). In short:
 
 1. **[Fork this repo](https://github.com/jvoshs/share-to-notes/fork)** and make a separate **private** repo for your notes.
 2. **Get free keys:** Gemini (aistudio.google.com), Groq (console.groq.com) and a Cloudflare Workers AI token.
-   A Notion integration token is optional.
+   A Notion connection token is optional.
 3. **Deploy the inbox:**
    ```bash
    cd worker
