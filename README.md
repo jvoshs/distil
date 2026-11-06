@@ -39,7 +39,7 @@ you use. Pull requests that add fetchers for specific websites won't be merged.
 
 ## Set it up yourself
 
-About 30 minutes. The full guide with every detail is in [docs/SETUP.md](docs/SETUP.md). In short:
+About 15 minutes or less. The full guide with every detail is in [docs/SETUP.md](docs/SETUP.md). In short:
 
 1. **Fork this repo** and make a separate **private** repo for your notes.
 2. **Get free keys:** Gemini (aistudio.google.com), Groq (console.groq.com) and a Cloudflare Workers AI token.

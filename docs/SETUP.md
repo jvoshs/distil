@@ -1,6 +1,6 @@
 # Setting up Share to Notes
 
-About 30 minutes. Everything here is free. None of these services need a card for the free tier.
+About 15 minutes or less. Everything here is free. None of these services need a card for the free tier.
 
 You'll make:
 
