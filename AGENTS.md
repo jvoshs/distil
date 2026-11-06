@@ -51,6 +51,19 @@ You're helping someone set up or change Share to Notes. Read README.md and docs/
     `gh workflow run process.yml -R OWNER/FORK` and `gh run watch -R OWNER/FORK`. Check the log shows
     `Saved <hidden>.md` and no links or titles.
 
+## Writing a fetcher plugin
+
+If the user asks for help with a fetcher:
+
+1. Ask what content they save and where it comes from.
+2. Suggest options, best first: an official API, an official data export, an oEmbed or public embed link,
+   a direct media link, then other tools. Explain the trade-offs: reliability, cost, rate limits, and
+   whether it fits the site's terms.
+3. Never use the user's own logins, cookies or session tokens for a site. That can get their account banned.
+4. Write the plugin to the **notes repo** at `private/fetcher.py`, following examples/fetcher_example.py.
+   Put any packages it needs in `private/requirements.txt`, and any keys in the `FETCHER_ENV` secret.
+5. Never add it to this repo.
+
 ## Changing the code
 
 - The engine is `pipeline/notes_pipeline.py`. It only uses the Python standard library, plus ffmpeg.

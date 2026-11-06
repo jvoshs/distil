@@ -107,6 +107,15 @@ def fetch(url, workdir):
 See [examples/fetcher_example.py](examples/fetcher_example.py) for the full interface. Settings for your
 plugin go in the `FETCHER_ENV` secret, one `KEY=value` per line.
 
+**Not sure how to write one?** Ask your AI coding agent. Tell it what kind of content you save and where
+it comes from, and ask for the best way to fetch it for your use case. A prompt like this works well:
+
+> Help me write a fetcher plugin for Share to Notes, following AGENTS.md. I mostly save [the kind of content]
+> from [where]. Suggest the best way to get the media and text for that, and explain the trade-offs. Prefer
+> official APIs, exports or embed links where they exist, and keep within the site's terms.
+
+The agent will put the plugin in your private notes repo, not in this one.
+
 ## Privacy
 
 - **Your notes, plugin, settings and keys never go in this repo.** Notes, plugin and settings live in your
