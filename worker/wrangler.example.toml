@@ -1,0 +1,31 @@
+# Copy this to wrangler.toml (which is gitignored) and fill in your own values.
+name = "share-to-notes-inbox"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+# Optional: serve the inbox on your own domain instead of workers.dev
+# routes = [
+#   { pattern = "inbox.example.com", custom_domain = true }
+# ]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "share-to-notes"
+database_id = "PASTE_THE_ID_FROM_wrangler_d1_create"
+
+[vars]
+GITHUB_REPO = "YOUR_GITHUB_USERNAME/share-to-notes"   # this engine repo (where the workflow runs)
+WIDGET_KEY = "PICK_A_RANDOM_STRING"                     # used in the Allowance card link: /widget?k=...
+APP_NAME = "Share to Notes"
+ITEM_NOUN = "posts"                                     # shown on the Allowance card
+WIDGET_TZ = "UTC"                                       # your time zone, e.g. "Europe/London"
+STRIP_PARAMS = ""                                       # extra tracking parameters to remove from links, comma separated
+
+# Safety net: every 3 hours, start processing if anything is still waiting
+[triggers]
+crons = ["0 */3 * * *"]
+
+# Secrets are NOT stored here. Set them with:
+#   npx wrangler secret put INBOX_TOKEN    (any long random string; your shortcut uses it too)
+#   npx wrangler secret put GITHUB_TOKEN   (fine-grained token, Contents: read and write on this repo)

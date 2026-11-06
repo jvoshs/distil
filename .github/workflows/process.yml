@@ -1,0 +1,87 @@
+name: Make notes
+
+on:
+  repository_dispatch:
+    types: [new-link]    # sent by your inbox Worker when you share a link
+  workflow_dispatch:     # "Run workflow" button in GitHub
+    inputs:
+      rewrite:
+        description: 'Rewrite notes: "all", "thumbnails", "notion", or a note ID. Leave blank to process the inbox.'
+        required: false
+        default: ""
+
+# One run at a time per lane. Inbox runs share one lane, manual runs get their own.
+concurrency:
+  group: notes-${{ github.event_name }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NOTES_DIR: ${{ github.workspace }}/notes
+    steps:
+      - name: Check settings
+        env:
+          NOTES_REPO: ${{ secrets.NOTES_REPO }}
+        run: |
+          if [ -z "$NOTES_REPO" ]; then echo "Add the NOTES_REPO secret first. See docs/SETUP.md."; exit 1; fi
+
+      - uses: actions/checkout@v4
+
+      # Your notes live in a separate PRIVATE repo. This checks it out into notes/.
+      # Its name is a secret, so it shows as *** in the log.
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ secrets.NOTES_REPO }}
+          token: ${{ secrets.NOTES_REPO_TOKEN }}
+          path: notes
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install tools
+        run: |
+          command -v ffmpeg >/dev/null || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
+          pip install -q -r pipeline/requirements.txt
+          if [ -f notes/private/requirements.txt ]; then pip install -q -r notes/private/requirements.txt; fi
+
+      # Only secrets are passed here. Everything else comes from settings.env in your notes repo,
+      # and the rewrite input is read from the event file, so none of it appears in the public log.
+      - name: Make notes
+        env:
+          INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          FETCHER_ENV: ${{ secrets.FETCHER_ENV }}
+          GITHUB_TOKEN: ${{ github.token }}
+          QUIET_LOGS: "1"
+        run: python pipeline/notes_pipeline.py
+
+      - name: Save notes to the notes repo
+        if: always()
+        working-directory: notes
+        env:
+          QUIET_LOGS: "1"
+        run: |
+          git config user.name "Share to Notes"
+          git config user.email "share-to-notes@users.noreply.github.com"
+          save() { git add -A -- . ':!private' ':!settings.env' && ! git diff --cached --quiet && git commit -q -m "$1"; }
+          save "Add notes $(date -u +'%Y-%m-%d %H:%M')" || { echo "No new notes"; exit 0; }
+          # If another run saved first, start from its version and put this run's notes back on top.
+          for i in 1 2 3 4 5; do
+            git push -q 2>/dev/null && echo "Saved" && exit 0
+            echo "Another run saved first. Merging (try $i)."
+            sleep $((i * 3))
+            python ../pipeline/notes_pipeline.py --replay && save "Add notes $(date -u +'%Y-%m-%d %H:%M')" || true
+          done
+          echo "Couldn't save after 5 tries" && exit 1

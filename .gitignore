@@ -1,0 +1,9 @@
+# Your own settings and notes never go in this repo
+worker/wrangler.toml
+notes/
+private/
+.env
+__pycache__/
+.DS_Store
+node_modules/
+.wrangler/

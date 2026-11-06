@@ -1,0 +1,2 @@
+# The engine only uses the Python standard library.
+# ffmpeg must be installed. A fetcher plugin can list its own needs in private/requirements.txt.
