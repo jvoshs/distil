@@ -1,5 +1,5 @@
 # Copy this to wrangler.toml (which is gitignored) and fill in your own values.
-name = "share-to-notes-inbox"
+name = "distil-inbox"
 main = "src/index.js"
 compatibility_date = "2026-10-01"
 workers_dev = true
@@ -11,13 +11,13 @@ workers_dev = true
 
 [[d1_databases]]
 binding = "DB"
-database_name = "share-to-notes"
+database_name = "distil"
 database_id = "PASTE_THE_ID_FROM_wrangler_d1_create"
 
 [vars]
-GITHUB_REPO = "YOUR_GITHUB_USERNAME/share-to-notes"   # this engine repo (where the workflow runs)
+GITHUB_REPO = "YOUR_GITHUB_USERNAME/distil"   # this engine repo (where the workflow runs)
 WIDGET_KEY = "PICK_A_RANDOM_STRING"                     # used in the Allowance card link: /widget?k=...
-APP_NAME = "Share to Notes"
+APP_NAME = "Distil"
 ITEM_NOUN = "posts"                                     # shown on the Allowance card
 WIDGET_TZ = "UTC"                                       # your time zone, e.g. "Europe/London"
 STRIP_PARAMS = ""                                       # extra tracking parameters to remove from links, comma separated

@@ -73,8 +73,8 @@ jobs:
         env:
           QUIET_LOGS: "1"
         run: |
-          git config user.name "Share to Notes"
-          git config user.email "share-to-notes@users.noreply.github.com"
+          git config user.name "Distil"
+          git config user.email "distil@users.noreply.github.com"
           save() { git add -A -- . ':!private' ':!settings.env' && ! git diff --cached --quiet && git commit -q -m "$1"; }
           save "Add notes $(date -u +'%Y-%m-%d %H:%M')" || { echo "No new notes"; exit 0; }
           # If another run saved first, start from its version and put this run's notes back on top.

@@ -1,4 +1,4 @@
-# Setting up Share to Notes
+# Setting up Distil
 
 About 15 minutes or less. As of November 2026, everything here is free and none of these services need a card
 for their free tier. Plans change, so check each provider's pricing page before you sign up.
@@ -42,8 +42,8 @@ You'll make:
 cd worker
 cp wrangler.example.toml wrangler.toml
 npx wrangler login
-npx wrangler d1 create share-to-notes          # copy the database_id into wrangler.toml
-npx wrangler d1 execute share-to-notes --remote --file=schema.sql
+npx wrangler d1 create distil          # copy the database_id into wrangler.toml
+npx wrangler d1 execute distil --remote --file=schema.sql
 npx wrangler secret put INBOX_TOKEN            # any long random string
 npx wrangler secret put GITHUB_TOKEN           # see below
 npx wrangler deploy
@@ -76,7 +76,7 @@ Then go to the Actions tab and enable workflows if GitHub asks.
 Settings that aren't secret go in `settings.env` at the top of your **notes** repo, so they stay private:
 
 ```
-INBOX_URL=https://share-to-notes-inbox.yourname.workers.dev
+INBOX_URL=https://distil-inbox.yourname.workers.dev
 NOTION_DATA_SOURCE_ID=
 NOTION_HUB_ID=
 NOTE_LANGUAGE=British English

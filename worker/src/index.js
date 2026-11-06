@@ -1,10 +1,10 @@
-// Share to Notes inbox: a private queue for links you share, plus a place to read the finished notes.
+// Distil inbox: a private queue for links you share, plus a place to read the finished notes.
 //
 // Flow: a share-sheet shortcut or this web page adds a link -> this Worker starts a GitHub Actions job ->
 // the job makes the note and saves it in your notes repo (and Notion, if set up).
 //
 // Every /api/* call needs the header:  Authorization: Bearer <INBOX_TOKEN>
-// Secrets: INBOX_TOKEN, GITHUB_TOKEN.  Vars: GITHUB_REPO ("username/share-to-notes"), WIDGET_KEY, APP_NAME.
+// Secrets: INBOX_TOKEN, GITHUB_TOKEN.  Vars: GITHUB_REPO ("username/distil"), WIDGET_KEY, APP_NAME.
 
 import { handleWidget, saveUsage } from "./widget.js";
 
@@ -16,7 +16,7 @@ export default {
     const url = new URL(request.url);
 
     if (request.method === "GET" && (url.pathname === "/" || url.pathname === "/index.html")) {
-      return new Response(PAGE_HTML.replaceAll("{{APP_NAME}}", escapeHtml(env.APP_NAME || "Share to Notes")), {
+      return new Response(PAGE_HTML.replaceAll("{{APP_NAME}}", escapeHtml(env.APP_NAME || "Distil")), {
         headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" },
       });
     }
@@ -93,7 +93,7 @@ export async function triggerGitHub(env, reason) {
     headers: {
       authorization: `Bearer ${env.GITHUB_TOKEN}`,
       accept: "application/vnd.github+json",
-      "user-agent": "share-to-notes-worker",
+      "user-agent": "distil-worker",
       "x-github-api-version": "2022-11-28",
       "content-type": "application/json",
     },

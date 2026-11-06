@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Share to Notes: turns links you share into tidy notes. Runs on GitHub Actions.
+Distil: turns links you share into tidy notes. Runs on GitHub Actions.
 
 For each waiting link in your inbox (the Cloudflare Worker in worker/):
   1. Fetch the post's media with a fetcher plugin you provide (see examples/fetcher_example.py).
@@ -159,7 +159,7 @@ def http(url: str, method: str = "GET", body=None, headers: dict | None = None, 
          raw: bytes | None = None) -> dict:
     data = raw if raw is not None else (json.dumps(body).encode() if body is not None else None)
     req = urllib.request.Request(url, data=data, method=method)
-    req.add_header("user-agent", "ShareToNotes/1.0")
+    req.add_header("user-agent", "Distil/1.0")
     if raw is None:
         req.add_header("content-type", "application/json")
     for k, v in (headers or {}).items():
@@ -381,7 +381,7 @@ def groq_transcribe(audio: Path, s: Settings) -> tuple[str, str]:
     req = urllib.request.Request(GROQ_URL, data=body, method="POST")
     req.add_header("authorization", f"Bearer {s.groq_key}")
     req.add_header("content-type", f"multipart/form-data; boundary={boundary}")
-    req.add_header("user-agent", "ShareToNotes/1.0")
+    req.add_header("user-agent", "Distil/1.0")
     with urllib.request.urlopen(req, timeout=180) as res:
         out = json.loads(res.read().decode() or "{}")
     return (out.get("text") or "").strip(), str(out.get("language") or "").lower()

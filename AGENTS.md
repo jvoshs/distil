@@ -1,6 +1,6 @@
 # Instructions for AI coding agents
 
-You're helping someone set up or change Share to Notes. Read README.md and docs/SETUP.md first.
+You're helping someone set up or change Distil. Read README.md and docs/SETUP.md first.
 
 ## Rules
 
@@ -32,8 +32,8 @@ You're helping someone set up or change Share to Notes. Read README.md and docs/
    - `cp wrangler.example.toml wrangler.toml`, then fill in `GITHUB_REPO`, `WIDGET_KEY` (generate a random
      string with `openssl rand -hex 12`), `APP_NAME`, `ITEM_NOUN` and `WIDGET_TZ`.
    - `npx wrangler login`
-   - `npx wrangler d1 create share-to-notes`, then put the `database_id` in wrangler.toml.
-   - `npx wrangler d1 execute share-to-notes --remote --file=schema.sql`
+   - `npx wrangler d1 create distil`, then put the `database_id` in wrangler.toml.
+   - `npx wrangler d1 execute distil --remote --file=schema.sql`
    - Generate an inbox token with `openssl rand -hex 24`. Show it to the user once, so they can use it in their
      Shortcut. Then have them run `npx wrangler secret put INBOX_TOKEN` and paste it there.
    - `npx wrangler secret put GITHUB_TOKEN` (the fine-grained token)

@@ -40,7 +40,7 @@ export async function handleWidget(url, env) {
   if (url.pathname === "/widget/data") {
     return new Response(JSON.stringify(data), { headers: { ...headers, "content-type": "application/json" } });
   }
-  const config = { tz: env.WIDGET_TZ || "UTC", noun: env.ITEM_NOUN || "posts", title: env.APP_NAME || "Share to Notes" };
+  const config = { tz: env.WIDGET_TZ || "UTC", noun: env.ITEM_NOUN || "posts", title: env.APP_NAME || "Distil" };
   const safe = (o) => JSON.stringify(o).replace(/</g, "\\u003c");
   const html = WIDGET_HTML.replace("__DATA__", safe(data)).replace("__CONFIG__", safe(config));
   return new Response(html, { headers: { ...headers, "content-type": "text/html; charset=utf-8" } });

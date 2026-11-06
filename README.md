@@ -1,10 +1,13 @@
-# Share to Notes
+# Distil
 
 Share a link from your phone. A few minutes later it's a tidy, searchable note.
 
-Share to Notes turns posts and videos you share to it into Markdown notes that you, Notion and AI assistants
+Distil turns posts and videos you share to it into Markdown notes that you, Notion and AI assistants
 like Claude can read. Each note has a summary, the key points, every item in a list, things to try,
 and the full extracted text: caption, spoken transcript, on-screen text and slide text.
+
+It handles short-form videos, multi-slide posts and carousels, images and clips with speech or on-screen
+text. If your fetcher plugin can get it, Distil can turn it into a note.
 
 Think of it as your own customisable version of save-it-later apps like [mymind](https://mymind.com) or
 [Raindrop.io](https://raindrop.io), except it actually watches the videos you share to it, and every note is a plain
@@ -47,15 +50,15 @@ you use. Pull requests that add fetchers for specific websites won't be merged.
 About 15 minutes or less. Works on Mac, Windows and Linux, with iPhone or Android. The full guide with every
 detail is in [docs/SETUP.md](docs/SETUP.md). In short:
 
-1. **[Fork this repo](https://github.com/jvoshs/share-to-notes/fork)** and make a separate **private** repo for your notes.
+1. **[Fork this repo](https://github.com/jvoshs/distil/fork)** and make a separate **private** repo for your notes.
 2. **Get free keys:** Gemini (aistudio.google.com), Groq (console.groq.com) and a Cloudflare Workers AI token.
    A Notion connection token is optional.
 3. **Deploy the inbox:**
    ```bash
    cd worker
    cp wrangler.example.toml wrangler.toml      # then fill it in
-   npx wrangler d1 create share-to-notes       # paste the id into wrangler.toml
-   npx wrangler d1 execute share-to-notes --remote --file=schema.sql
+   npx wrangler d1 create distil       # paste the id into wrangler.toml
+   npx wrangler d1 execute distil --remote --file=schema.sql
    npx wrangler secret put INBOX_TOKEN
    npx wrangler secret put GITHUB_TOKEN
    npx wrangler deploy
@@ -76,14 +79,14 @@ Claude Code, Codex and similar tools can do most of the setup for you. The repo 
    - [GitHub CLI](https://cli.github.com) (`gh`), then sign in with `gh auth login`
    - [Node.js](https://nodejs.org) (the LTS version)
    - An agent: [Claude Code](https://claude.com/claude-code) or [Codex](https://github.com/openai/codex)
-2. [Fork this repo](https://github.com/jvoshs/share-to-notes/fork), then clone your fork:
+2. [Fork this repo](https://github.com/jvoshs/distil/fork), then clone your fork:
    ```bash
-   gh repo clone YOUR_USERNAME/share-to-notes
-   cd share-to-notes
+   gh repo clone YOUR_USERNAME/distil
+   cd distil
    ```
 3. Start your agent in that folder (`claude` or `codex`) and paste:
 
-   > Set up Share to Notes for me by following AGENTS.md. Ask me before each step that creates something
+   > Set up Distil for me by following AGENTS.md. Ask me before each step that creates something
    > or needs a key. Never ask me to paste a key into this chat. Use commands that prompt me for it instead.
 
 The agent can create the repos, the database and the Worker, and walk you through the parts only you
@@ -116,7 +119,7 @@ plugin go in the `FETCHER_ENV` secret, one `KEY=value` per line.
 **Not sure how to write one?** Ask your AI coding agent. Tell it what kind of content you save and where
 it comes from, and ask for the best way to fetch it for your use case. A prompt like this works well:
 
-> Help me write a fetcher plugin for Share to Notes, following AGENTS.md. I mostly save [the kind of content]
+> Help me write a fetcher plugin for Distil, following AGENTS.md. I mostly save [the kind of content]
 > from [where]. Suggest the best way to get the media and text for that, and explain the trade-offs. Prefer
 > official APIs, exports or embed links where they exist, and keep within the site's terms.
 

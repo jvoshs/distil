@@ -1,5 +1,5 @@
 """
-Example fetcher plugin for Share to Notes.
+Example fetcher plugin for Distil.
 
 Copy this to private/fetcher.py in your PRIVATE notes repo and fill in fetch().
 The engine imports it at the start of each run.
@@ -42,7 +42,7 @@ def fetch(url: str, workdir: Path) -> dict | None:
     # info = call_the_official_api(url, api_key)
 
     video = workdir / "01.mp4"
-    req = urllib.request.Request(url, headers={"user-agent": "ShareToNotes/1.0"})
+    req = urllib.request.Request(url, headers={"user-agent": "Distil/1.0"})
     with urllib.request.urlopen(req, timeout=120) as res, open(video, "wb") as f:
         f.write(res.read())
 
